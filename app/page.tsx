@@ -4,9 +4,14 @@ import { FeaturedPost } from "@/components/FeaturedPost";
 import { MapPreview } from "@/components/MapPreview";
 import { RecentPosts } from "@/components/RecentPosts";
 import { StatsPanel } from "@/components/StatsPanel";
+import { formatDate } from "@/lib/format";
+import { getPosts, getPostsWithCoordinates } from "@/lib/posts";
 import { siteConfig } from "@/lib/site-config";
+import { formatStatNumber, getStats } from "@/lib/stats";
 
-const featuredPost = {
+export const dynamic = "force-dynamic";
+
+const fallbackFeaturedPost = {
   title: "Flattop Mountain Trail",
   category: "Hike",
   date: "June 15, 2024",
@@ -20,13 +25,7 @@ const featuredPost = {
   meta: ["Moderate", "4.3 mi", "2.5-3 hrs"],
 };
 
-const stats = [
-  { label: "Posts", value: "24", detail: "All adventures" },
-  { label: "Hikes", value: "8", detail: "Trails explored" },
-  { label: "Miles", value: "41.2", detail: "Total explored" },
-];
-
-const recentPosts = [
+const fallbackRecentPosts = [
   {
     title: "Moose's Tooth Pizza",
     category: "Food",
@@ -56,7 +55,64 @@ const recentPosts = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const [stats, recentPosts, mappedPosts] = await Promise.all([
+    getStats(),
+    getPosts(),
+    getPostsWithCoordinates(),
+  ]);
+
+  const featuredPost = recentPosts[0]
+    ? {
+        title: recentPosts[0].title,
+        category: recentPosts[0].category,
+        date: formatDate(recentPosts[0].date),
+        location: recentPosts[0].location ?? "Anchorage, AK",
+        elevation: recentPosts[0].distance
+          ? `${recentPosts[0].distance} mi`
+          : "Field note",
+        excerpt: recentPosts[0].body,
+        rating: recentPosts[0].rating ? `${recentPosts[0].rating}/10` : "New",
+        imageUrl:
+          recentPosts[0].imageUrl ?? siteConfig.assets.defaultPostImage,
+        meta: [
+          recentPosts[0].category,
+          recentPosts[0].cost !== null ? `$${recentPosts[0].cost}` : "Saved",
+          recentPosts[0].latitude !== null ? "Mapped" : "Unmapped",
+        ],
+      }
+    : fallbackFeaturedPost;
+
+  const homepageStats = [
+    {
+      label: "Posts",
+      value: formatStatNumber(stats.totalPosts),
+      detail: "All adventures",
+    },
+    {
+      label: "Hikes",
+      value: formatStatNumber(stats.hikeTrailCount),
+      detail: "Trails explored",
+    },
+    {
+      label: "Miles",
+      value: formatStatNumber(stats.totalDistance, 1),
+      detail: "Total explored",
+    },
+  ];
+
+  const homepageRecentPosts =
+    recentPosts.length > 0
+      ? recentPosts.slice(0, 3).map((post) => ({
+          title: post.title,
+          category: post.category,
+          date: formatDate(post.date),
+          location: post.location,
+          excerpt: post.body,
+          imageUrl: post.imageUrl,
+        }))
+      : fallbackRecentPosts;
+
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-8 sm:px-8 lg:px-10">
       <section className="grid items-center gap-8 pt-2 md:grid-cols-[220px_1fr] lg:pt-8">
@@ -87,12 +143,12 @@ export default function Home() {
 
       <section className="grid gap-6 lg:grid-cols-[1fr_360px]">
         <FeaturedPost post={featuredPost} />
-        <StatsPanel title="Summer at a Glance" stats={stats} />
+        <StatsPanel title="Summer at a Glance" stats={homepageStats} />
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1fr_460px]">
-        <RecentPosts posts={recentPosts} />
-        <MapPreview />
+        <RecentPosts posts={homepageRecentPosts} />
+        <MapPreview posts={mappedPosts} />
       </section>
 
       <div className="flex justify-center pb-8">

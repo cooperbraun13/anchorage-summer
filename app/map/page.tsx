@@ -1,10 +1,34 @@
-export default function MapPage() {
+import { MapView } from "@/components/MapView";
+import { getPostsWithCoordinates } from "@/lib/posts";
+import { siteConfig } from "@/lib/site-config";
+
+export const dynamic = "force-dynamic";
+
+export default async function MapPage() {
+  const posts = await getPostsWithCoordinates();
+
   return (
-    <main className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
-      <h1 className="font-serif text-4xl font-bold text-foreground">Map</h1>
-      <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
-        The Leaflet map will be added after posts can store coordinates.
-      </p>
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-10 sm:px-8 lg:px-10">
+      <section className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+            OpenStreetMap
+          </p>
+          <h1 className="font-serif text-5xl font-bold text-foreground">Map</h1>
+          <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
+            Posts with coordinates appear as markers around{" "}
+            {siteConfig.shortName}. Add latitude and longitude while editing a
+            post to place it here.
+          </p>
+        </div>
+        <span className="w-fit rounded-full bg-primary-soft px-4 py-2 text-sm font-bold text-primary">
+          {posts.length} mapped
+        </span>
+      </section>
+
+      <section className="overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-soft">
+        <MapView posts={posts} />
+      </section>
     </main>
   );
 }

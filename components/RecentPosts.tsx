@@ -6,9 +6,9 @@ type RecentPostsProps = {
     title: string;
     category: string;
     date: string;
-    location: string;
+    location?: string | null;
     excerpt: string;
-    imageUrl: string;
+    imageUrl?: string | null;
   }>;
 };
 

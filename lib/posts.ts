@@ -67,3 +67,28 @@ export async function getPostCategories() {
 
   return categories.map((item) => item.category);
 }
+
+export async function getPostsWithCoordinates() {
+  return prisma.post.findMany({
+    where: {
+      latitude: {
+        not: null,
+      },
+      longitude: {
+        not: null,
+      },
+    },
+    orderBy: {
+      date: "desc",
+    },
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      category: true,
+      location: true,
+      latitude: true,
+      longitude: true,
+    },
+  });
+}

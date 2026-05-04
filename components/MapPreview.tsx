@@ -1,34 +1,26 @@
-const pins = [
-  { label: "Flattop", top: "24%", left: "54%" },
-  { label: "Coastal Trail", top: "44%", left: "32%" },
-  { label: "Coffee", top: "58%", left: "64%" },
-  { label: "Kincaid", top: "70%", left: "42%" },
-  { label: "Pizza", top: "34%", left: "78%" },
-];
+import Link from "next/link";
+import { MapView, type MapPost } from "@/components/MapView";
 
-export function MapPreview() {
+type MapPreviewProps = {
+  posts: MapPost[];
+};
+
+export function MapPreview({ posts }: MapPreviewProps) {
   return (
     <section className="rounded-2xl border border-border bg-card p-6 shadow-soft">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-serif text-2xl font-bold text-foreground">
           Places I&apos;ve Been
         </h2>
-        <span className="text-sm font-semibold text-primary">
-          Map preview
-        </span>
+        <Link
+          href="/map"
+          className="text-sm font-semibold text-primary transition hover:text-foreground"
+        >
+          Open map
+        </Link>
       </div>
-      <div className="map-grid relative mt-4 aspect-[4/3] overflow-hidden rounded-xl border border-border">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-card/85 px-3 py-1 text-sm font-bold text-foreground shadow-sm">
-          Anchorage
-        </div>
-        {pins.map((pin) => (
-          <span
-            key={pin.label}
-            aria-label={pin.label}
-            className="absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-card bg-primary shadow-sm"
-            style={{ top: pin.top, left: pin.left }}
-          />
-        ))}
+      <div className="mt-4 overflow-hidden rounded-xl">
+        <MapView posts={posts} className="h-80" compact />
       </div>
     </section>
   );
