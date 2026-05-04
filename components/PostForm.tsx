@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useId, useState } from "react";
 import type { PostActionState, PostFormValues } from "@/lib/validations";
 import { getEmptyPostValues } from "@/lib/validations";
 
@@ -125,7 +125,23 @@ export function PostForm({
         </Field>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 border-y border-border py-5 md:grid-cols-2">
+        <ImageUploadField error={state.errors?.imageFile} />
+
+        <Field label="Image URL" name="imageUrl" error={state.errors?.imageUrl}>
+          <input
+            className={inputClassName}
+            name="imageUrl"
+            defaultValue={values.imageUrl}
+            placeholder="Optional fallback"
+          />
+          <span className="text-xs font-medium text-muted-foreground">
+            Used only when no file is uploaded.
+          </span>
+        </Field>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
         <Field label="Cost" name="cost" error={state.errors?.cost}>
           <input
             className={inputClassName}
@@ -149,15 +165,6 @@ export function PostForm({
             step="any"
             defaultValue={values.distance}
             placeholder="4.3"
-          />
-        </Field>
-
-        <Field label="Image URL" name="imageUrl" error={state.errors?.imageUrl}>
-          <input
-            className={inputClassName}
-            name="imageUrl"
-            defaultValue={values.imageUrl}
-            placeholder="/alaska/default-post.jpg"
           />
         </Field>
       </div>
@@ -223,5 +230,43 @@ function Field({
   );
 }
 
+function ImageUploadField({ error }: { error?: string }) {
+  const inputId = useId();
+  const [fileName, setFileName] = useState("");
+
+  return (
+    <div className="grid gap-2 text-sm font-semibold text-foreground">
+      <label htmlFor={inputId}>Upload Image</label>
+      <div className="flex min-h-11 items-center gap-3 rounded-md border border-border bg-white px-3 py-2">
+        <label
+          htmlFor={inputId}
+          className="shrink-0 cursor-pointer rounded-sm bg-primary px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white transition hover:bg-primary/90"
+        >
+          Choose
+        </label>
+        <span className="min-w-0 truncate text-sm font-medium text-muted-foreground">
+          {fileName || "No file selected"}
+        </span>
+      </div>
+      <input
+        id={inputId}
+        className="sr-only"
+        name="imageFile"
+        type="file"
+        accept="image/jpeg,image/png,image/webp,image/avif"
+        onChange={(event) => {
+          setFileName(event.currentTarget.files?.[0]?.name ?? "");
+        }}
+      />
+      <span className="text-xs font-medium text-muted-foreground">
+        JPEG, PNG, WebP, or AVIF. Max 4 MB.
+      </span>
+      {error ? (
+        <span className="text-xs font-semibold text-red-700">{error}</span>
+      ) : null}
+    </div>
+  );
+}
+
 const inputClassName =
-  "w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-4 focus:ring-primary-soft";
+  "w-full rounded-md border border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary-soft";
