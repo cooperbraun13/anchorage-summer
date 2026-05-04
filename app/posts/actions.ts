@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { verifyAdminPassword } from "@/lib/auth";
+import { getPostImageFile, uploadPostImage } from "@/lib/blob";
 import { prisma } from "@/lib/prisma";
 import type { PostActionState } from "@/lib/validations";
 import { getPostFormValues, validatePostFormData } from "@/lib/validations";
@@ -31,6 +32,19 @@ export async function createPostAction(
     };
   }
 
+  const imageFile = getPostImageFile(formData);
+
+  if (!imageFile.ok) {
+    return {
+      message: "Fix the highlighted fields.",
+      errors: { imageFile: imageFile.message },
+      values: {
+        ...getPostFormValues(formData),
+        slug: parsed.data.slug,
+      },
+    };
+  }
+
   const existingPost = await prisma.post.findUnique({
     where: { slug: parsed.data.slug },
     select: { id: true },
@@ -47,8 +61,27 @@ export async function createPostAction(
     };
   }
 
+  let imageUrl = parsed.data.imageUrl;
+
+  if (imageFile.file) {
+    const uploadResult = await uploadImageAndReturnUrl(
+      imageFile.file,
+      parsed.data.slug,
+      formData,
+    );
+
+    if (typeof uploadResult !== "string") {
+      return uploadResult.error;
+    }
+
+    imageUrl = uploadResult;
+  }
+
   await prisma.post.create({
-    data: parsed.data,
+    data: {
+      ...parsed.data,
+      imageUrl,
+    },
   });
 
   revalidatePath("/posts");
@@ -80,6 +113,19 @@ export async function updatePostAction(
     };
   }
 
+  const imageFile = getPostImageFile(formData);
+
+  if (!imageFile.ok) {
+    return {
+      message: "Fix the highlighted fields.",
+      errors: { imageFile: imageFile.message },
+      values: {
+        ...getPostFormValues(formData),
+        slug: parsed.data.slug,
+      },
+    };
+  }
+
   const post = await prisma.post.findUnique({
     where: { slug: currentSlug },
     select: { id: true },
@@ -108,9 +154,28 @@ export async function updatePostAction(
     };
   }
 
+  let imageUrl = parsed.data.imageUrl;
+
+  if (imageFile.file) {
+    const uploadResult = await uploadImageAndReturnUrl(
+      imageFile.file,
+      parsed.data.slug,
+      formData,
+    );
+
+    if (typeof uploadResult !== "string") {
+      return uploadResult.error;
+    }
+
+    imageUrl = uploadResult;
+  }
+
   await prisma.post.update({
     where: { id: post.id },
-    data: parsed.data,
+    data: {
+      ...parsed.data,
+      imageUrl,
+    },
   });
 
   revalidatePath("/posts");
@@ -135,4 +200,30 @@ export async function deletePostAction(
 
   revalidatePath("/posts");
   redirect("/posts");
+}
+
+async function uploadImageAndReturnUrl(
+  file: File,
+  slug: string,
+  formData: FormData,
+): Promise<string | { error: PostActionState }> {
+  try {
+    const blob = await uploadPostImage(file, slug);
+    return blob.url;
+  } catch {
+    return {
+      error: {
+        message:
+          "Image upload failed. Check BLOB_READ_WRITE_TOKEN and try again.",
+        errors: {
+          imageFile:
+            "Image upload failed. Check BLOB_READ_WRITE_TOKEN and try again.",
+        },
+        values: {
+          ...getPostFormValues(formData),
+          slug,
+        },
+      },
+    };
+  }
 }

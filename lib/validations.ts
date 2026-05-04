@@ -19,6 +19,7 @@ export type PostActionState = {
   message?: string;
   errors?: PostValidationErrors & {
     adminPassword?: string;
+    imageFile?: string;
     form?: string;
   };
   values?: PostFormValues;
