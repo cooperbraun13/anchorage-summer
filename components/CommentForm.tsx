@@ -21,7 +21,7 @@ export function CommentForm({ action }: CommentFormProps) {
   return (
     <form
       action={formAction}
-      className="grid gap-5 rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6"
+      className="grid gap-5 rounded-lg border border-border bg-white/95 p-5 shadow-soft sm:p-6"
     >
       <div>
         <h2 className="font-serif text-2xl font-bold text-foreground">
@@ -34,7 +34,7 @@ export function CommentForm({ action }: CommentFormProps) {
 
       {state.message ? (
         <div
-          className={`rounded-xl border px-4 py-3 text-sm font-semibold ${
+          className={`rounded-sm border px-4 py-3 text-sm font-semibold ${
             state.ok
               ? "border-primary-soft bg-primary-soft text-primary"
               : "border-border bg-muted text-foreground"
@@ -91,7 +91,7 @@ export function CommentForm({ action }: CommentFormProps) {
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Posting..." : "Post Comment"}
         </button>
@@ -101,4 +101,4 @@ export function CommentForm({ action }: CommentFormProps) {
 }
 
 const inputClassName =
-  "w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-4 focus:ring-primary-soft";
+  "w-full rounded-sm border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary-soft";

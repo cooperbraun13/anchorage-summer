@@ -28,7 +28,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-7 px-5 py-9 sm:px-8">
-      <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+      <section className="overflow-hidden rounded-lg border border-border bg-white/95 shadow-soft">
         <div className="relative aspect-[16/9] bg-muted">
           <Image
             src={post.imageUrl || siteConfig.assets.defaultPostImage}
@@ -41,7 +41,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         </div>
         <div className="grid gap-5 p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="rounded-sm bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
+            <span className="rounded-sm border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
               {post.category}
             </span>
             <time className="text-sm font-medium text-muted-foreground">
@@ -63,20 +63,20 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
             {post.body}
           </div>
           {post.latitude !== null && post.longitude !== null ? (
-            <div className="rounded-xl border border-border bg-primary-soft/50 p-4 text-sm font-semibold text-primary">
+            <div className="rounded-sm border border-primary/10 bg-primary-soft/60 p-4 text-sm font-semibold text-primary">
               Map coordinates: {post.latitude}, {post.longitude}
             </div>
           ) : null}
           <div className="flex flex-wrap justify-between gap-3 border-t border-border pt-5">
             <Link
               href="/posts"
-              className="rounded-lg border border-border bg-card px-4 py-3 text-sm font-semibold text-primary transition hover:-translate-y-0.5 hover:shadow-soft"
+              className="rounded-sm border border-border bg-white px-4 py-3 text-sm font-semibold text-primary transition hover:-translate-y-0.5 hover:border-primary"
             >
               Back to posts
             </Link>
             <Link
               href={`/posts/${post.slug}/edit`}
-              className="rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-soft"
+              className="rounded-sm bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
             >
               Edit Post
             </Link>

@@ -23,7 +23,7 @@ const LeafletMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-full min-h-72 items-center justify-center rounded-xl border border-border bg-primary-soft/40 p-8 text-sm font-semibold text-primary">
+      <div className="flex h-full min-h-72 items-center justify-center rounded-sm border border-border bg-primary-soft/40 p-8 text-sm font-semibold text-primary">
         Loading map...
       </div>
     ),
@@ -43,7 +43,7 @@ export function MapView({
   if (mappedPosts.length === 0) {
     return (
       <div
-        className={`flex ${className} items-center justify-center rounded-xl border border-border bg-primary-soft/50 p-8 text-center`}
+        className={`flex ${className} items-center justify-center rounded-sm border border-border bg-primary-soft/50 p-8 text-center`}
       >
         <div>
           <h3 className="font-serif text-2xl font-bold text-foreground">

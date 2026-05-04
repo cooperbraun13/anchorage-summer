@@ -27,7 +27,7 @@ export default async function AdminCommentsPage({
   if (!isAuthenticated) {
     return (
       <main className="mx-auto flex w-full max-w-xl flex-col gap-6 px-5 py-16 sm:px-8">
-        <section>
+        <section className="border-b border-border/80 pb-6">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
             Admin
           </p>
@@ -41,17 +41,17 @@ export default async function AdminCommentsPage({
 
         <form
           action={loginAdminAction}
-          className="grid gap-5 rounded-2xl border border-border bg-card p-6 shadow-soft"
+          className="grid gap-5 rounded-lg border border-border bg-white/95 p-6 shadow-soft"
         >
           {query?.error ? (
-            <p className="rounded-xl border border-border bg-muted px-4 py-3 text-sm font-semibold text-foreground">
+            <p className="rounded-sm border border-border bg-muted px-4 py-3 text-sm font-semibold text-foreground">
               Enter the owner password to continue.
             </p>
           ) : null}
           <label className="grid gap-2 text-sm font-semibold text-foreground">
             Owner Password
             <input
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-primary-soft"
+              className="w-full rounded-sm border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-soft"
               name="adminPassword"
               required
               type="password"
@@ -60,7 +60,7 @@ export default async function AdminCommentsPage({
           </label>
           <button
             type="submit"
-            className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
+            className="rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
           >
             View Pending Comments
           </button>
@@ -73,7 +73,7 @@ export default async function AdminCommentsPage({
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-10 sm:px-8">
-      <section className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+      <section className="flex flex-col justify-between gap-4 border-b border-border/80 pb-7 md:flex-row md:items-end">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
             Admin
@@ -85,7 +85,7 @@ export default async function AdminCommentsPage({
             Review guest comments before they appear publicly on post pages.
           </p>
         </div>
-        <span className="rounded-sm bg-primary-soft px-4 py-2 text-sm font-bold text-primary">
+        <span className="rounded-sm border border-primary/10 bg-primary-soft px-4 py-2 text-sm font-bold text-primary">
           {comments.length} pending
         </span>
       </section>
@@ -95,7 +95,7 @@ export default async function AdminCommentsPage({
           {comments.map((comment) => (
             <article
               key={comment.id}
-              className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+              className="rounded-lg border border-border bg-white/95 p-6 shadow-soft"
             >
               <div className="flex flex-col justify-between gap-3 md:flex-row md:items-start">
                 <div>
@@ -113,7 +113,7 @@ export default async function AdminCommentsPage({
                   <form action={approveCommentAction.bind(null, comment.id)}>
                     <button
                       type="submit"
-                      className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-soft"
+                      className="rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
                     >
                       Approve
                     </button>
@@ -121,21 +121,21 @@ export default async function AdminCommentsPage({
                   <form action={deleteCommentAction.bind(null, comment.id)}>
                     <button
                       type="submit"
-                      className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition hover:-translate-y-0.5 hover:shadow-soft"
+                      className="rounded-sm border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition hover:-translate-y-0.5 hover:bg-red-100"
                     >
                       Delete
                     </button>
                   </form>
                 </div>
               </div>
-              <p className="mt-5 whitespace-pre-wrap rounded-xl border border-border bg-background/60 p-4 leading-7 text-foreground/80">
+              <p className="mt-5 whitespace-pre-wrap rounded-sm border border-border bg-muted/45 p-4 leading-7 text-foreground/80">
                 {comment.body}
               </p>
             </article>
           ))}
         </section>
       ) : (
-        <section className="rounded-2xl border border-border bg-card p-10 text-center shadow-soft">
+        <section className="rounded-lg border border-border bg-white/95 p-10 text-center shadow-soft">
           <h2 className="font-serif text-3xl font-bold text-foreground">
             No pending comments
           </h2>

@@ -18,7 +18,7 @@ type PostCardProps = {
 export function PostCard({ post }: PostCardProps) {
   const content = (
     <>
-      <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-muted">
+      <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-muted">
         <Image
           src={post.imageUrl || siteConfig.assets.defaultPostImage}
           alt=""
@@ -29,7 +29,7 @@ export function PostCard({ post }: PostCardProps) {
       </div>
       <div className="mt-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-sm bg-primary-soft px-2.5 py-1 text-[0.68rem] font-bold uppercase text-primary">
+          <span className="rounded-sm border border-primary/10 bg-primary-soft px-2.5 py-1 text-[0.68rem] font-bold uppercase text-primary">
             {post.category}
           </span>
           {post.rating ? (

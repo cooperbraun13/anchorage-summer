@@ -11,8 +11,8 @@ type CommentListProps = {
 
 export function CommentList({ comments }: CommentListProps) {
   return (
-    <section className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
-      <div className="flex items-center justify-between gap-4">
+    <section className="rounded-lg border border-border bg-white/95 p-5 shadow-soft sm:p-6">
+      <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
         <h2 className="font-serif text-2xl font-bold text-foreground">
           Comments
         </h2>
@@ -26,7 +26,7 @@ export function CommentList({ comments }: CommentListProps) {
           {comments.map((comment) => (
             <article
               key={comment.id}
-            className="rounded-xl border border-border bg-background/60 p-4 shadow-sm"
+              className="rounded-sm border border-border bg-muted/45 p-4"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="font-serif text-xl font-bold text-foreground">
@@ -43,7 +43,7 @@ export function CommentList({ comments }: CommentListProps) {
           ))}
         </div>
       ) : (
-        <p className="mt-4 rounded-xl border border-border bg-background/60 p-4 text-sm leading-6 text-muted-foreground">
+        <p className="mt-4 rounded-sm border border-border bg-muted/45 p-4 text-sm leading-6 text-muted-foreground">
           No approved comments yet.
         </p>
       )}

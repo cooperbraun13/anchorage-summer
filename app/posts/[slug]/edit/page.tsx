@@ -31,7 +31,7 @@ export default async function EditPostPage({
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-10 sm:px-8">
-      <section>
+      <section className="border-b border-border/80 pb-7">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
           Owner
         </p>

@@ -24,7 +24,7 @@ export function LeafletMap({ posts, className, compact }: LeafletMapProps) {
       center={siteConfig.map.defaultCenter}
       zoom={compact ? siteConfig.map.defaultZoom - 1 : siteConfig.map.defaultZoom}
       scrollWheelZoom={!compact}
-      className={`${className} rounded-xl border border-border`}
+      className={`${className} rounded-sm border border-border`}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

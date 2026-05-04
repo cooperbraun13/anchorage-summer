@@ -28,7 +28,7 @@ const config: Config = {
         "2xl": "0.625rem",
       },
       boxShadow: {
-        soft: "0 8px 24px rgb(45 68 54 / 0.08)",
+        soft: "0 14px 34px rgb(18 72 49 / 0.08)",
       },
       fontFamily: {
         body: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],

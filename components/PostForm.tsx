@@ -26,10 +26,10 @@ export function PostForm({
   return (
     <form
       action={formAction}
-      className="grid gap-5 rounded-2xl border border-border bg-card p-5 shadow-soft sm:gap-6 sm:p-6"
+      className="grid gap-5 rounded-lg border border-border bg-white/95 p-5 shadow-soft sm:gap-6 sm:p-6"
     >
       {state.message ? (
-        <div className="rounded-xl border border-border bg-primary-soft px-4 py-3 text-sm font-semibold text-primary">
+        <div className="rounded-sm border border-primary/10 bg-primary-soft px-4 py-3 text-sm font-semibold text-primary">
           {state.message}
         </div>
       ) : null}
@@ -201,7 +201,7 @@ export function PostForm({
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Saving..." : submitLabel}
         </button>
@@ -222,10 +222,15 @@ function Field({
   name: string;
 }) {
   return (
-    <label className="grid gap-2 text-sm font-semibold text-foreground" htmlFor={name}>
+    <label
+      className="grid gap-2 text-sm font-semibold text-foreground"
+      htmlFor={name}
+    >
       <span>{label}</span>
       {children}
-      {error ? <span className="text-xs font-semibold text-red-700">{error}</span> : null}
+      {error ? (
+        <span className="text-xs font-semibold text-red-700">{error}</span>
+      ) : null}
     </label>
   );
 }
@@ -237,7 +242,7 @@ function ImageUploadField({ error }: { error?: string }) {
   return (
     <div className="grid gap-2 text-sm font-semibold text-foreground">
       <label htmlFor={inputId}>Upload Image</label>
-      <div className="flex min-h-11 items-center gap-3 rounded-md border border-border bg-white px-3 py-2">
+      <div className="flex min-h-11 items-center gap-3 rounded-sm border border-border bg-white px-3 py-2">
         <label
           htmlFor={inputId}
           className="shrink-0 cursor-pointer rounded-sm bg-primary px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white transition hover:bg-primary/90"
@@ -269,4 +274,4 @@ function ImageUploadField({ error }: { error?: string }) {
 }
 
 const inputClassName =
-  "w-full rounded-md border border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary-soft";
+  "w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary-soft";

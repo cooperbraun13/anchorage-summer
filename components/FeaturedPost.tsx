@@ -16,8 +16,8 @@ type FeaturedPostProps = {
 
 export function FeaturedPost({ post }: FeaturedPostProps) {
   return (
-    <article className="grid overflow-hidden rounded-2xl border border-border bg-card shadow-soft md:grid-cols-[1.12fr_0.88fr]">
-      <div className="relative min-h-64 md:min-h-full">
+    <article className="grid overflow-hidden rounded-lg border border-border bg-white/95 shadow-soft md:grid-cols-[1.12fr_0.88fr]">
+      <div className="relative min-h-64 border-border md:min-h-full md:border-r">
         <Image
           src={post.imageUrl}
           alt=""
@@ -28,7 +28,7 @@ export function FeaturedPost({ post }: FeaturedPostProps) {
       </div>
       <div className="flex flex-col justify-center gap-4 p-6 sm:p-7">
         <div className="flex items-center justify-between gap-4">
-          <span className="rounded-sm bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
+          <span className="rounded-sm border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
             {post.category}
           </span>
           <time className="text-sm text-muted-foreground">{post.date}</time>
@@ -49,7 +49,7 @@ export function FeaturedPost({ post }: FeaturedPostProps) {
           {post.meta.map((item) => (
             <span
               key={item}
-              className="rounded-sm bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground"
+              className="rounded-sm border border-border bg-muted/70 px-3 py-1 text-xs font-semibold text-muted-foreground"
             >
               {item}
             </span>

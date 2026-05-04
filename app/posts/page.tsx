@@ -21,8 +21,8 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   ]);
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-5 py-9 sm:px-8 lg:px-10">
-      <section className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-9 sm:px-8 lg:px-10">
+      <section className="flex flex-col justify-between gap-5 border-b border-border/80 pb-7 md:flex-row md:items-end">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
             Field notes
@@ -36,21 +36,21 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         </div>
         <Link
           href="/posts/new"
-          className="inline-flex w-fit items-center rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
+          className="inline-flex w-fit items-center rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
         >
           Add Post
         </Link>
       </section>
 
-      <form className="grid gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft md:grid-cols-[1fr_180px_160px_auto] md:p-5">
+      <form className="grid gap-3 rounded-lg border border-border bg-white/95 p-4 shadow-soft md:grid-cols-[1fr_180px_160px_auto] md:p-5">
         <input
-          className="rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-4 focus:ring-primary-soft"
+          className="rounded-sm border border-border bg-white px-4 py-3 text-sm outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary-soft"
           name="search"
           placeholder="Search title, location, or body"
           defaultValue={params.search}
         />
         <select
-          className="rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary-soft"
+          className="rounded-sm border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-soft"
           name="category"
           defaultValue={params.category}
         >
@@ -62,7 +62,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           ))}
         </select>
         <select
-          className="rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary-soft"
+          className="rounded-sm border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-soft"
           name="sort"
           defaultValue={params.sort ?? "newest"}
         >
@@ -71,7 +71,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         </select>
         <button
           type="submit"
-          className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
+          className="rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
         >
           Filter
         </button>
@@ -82,7 +82,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           {posts.map((post) => (
             <div
               key={post.id}
-                className="rounded-2xl border border-border bg-card p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
+              className="rounded-lg border border-border bg-white/95 p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft"
             >
               <PostCard
                 post={{
@@ -100,7 +100,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           ))}
         </section>
       ) : (
-        <section className="rounded-2xl border border-border bg-card p-8 text-center shadow-soft sm:p-10">
+        <section className="rounded-lg border border-border bg-white/95 p-8 text-center shadow-soft sm:p-10">
           <h2 className="font-serif text-3xl font-bold text-foreground">
             No posts yet
           </h2>

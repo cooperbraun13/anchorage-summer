@@ -44,12 +44,14 @@ export default async function StatsPage() {
   ];
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-5 py-9 sm:px-8 lg:px-10">
-      <section>
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-9 sm:px-8 lg:px-10">
+      <section className="border-b border-border/80 pb-7">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
           Summer dashboard
         </p>
-        <h1 className="font-serif text-4xl font-bold text-foreground sm:text-5xl">Stats</h1>
+        <h1 className="font-serif text-4xl font-bold text-foreground sm:text-5xl">
+          Stats
+        </h1>
         <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
           A quick rollup of posts, trails, distance, ratings, and categories.
         </p>
@@ -59,20 +61,20 @@ export default async function StatsPage() {
         <>
           <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {statCards.map((stat) => (
-              <StatCard key={stat.label} {...stat} />
+              <StatCard key={stat.label} {...stat} framed />
             ))}
           </section>
 
           <section className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+            <div className="rounded-lg border border-border bg-white/95 p-6 shadow-soft">
               <h2 className="font-serif text-2xl font-bold text-foreground">
                 Categories
               </h2>
-              <div className="mt-5 grid gap-3">
+              <div className="mt-5 divide-y divide-border border-y border-border">
                 {Object.entries(stats.categoryCounts).map(([category, count]) => (
                   <div
                     key={category}
-                    className="flex items-center justify-between rounded-xl border border-border bg-background/60 px-4 py-3"
+                    className="flex items-center justify-between py-4"
                   >
                     <span className="text-sm font-bold text-primary">
                       {category}
@@ -85,7 +87,7 @@ export default async function StatsPage() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+            <div className="rounded-lg border border-border bg-white/95 p-6 shadow-soft">
               <h2 className="font-serif text-2xl font-bold text-foreground">
                 Highest Rated
               </h2>
@@ -95,7 +97,7 @@ export default async function StatsPage() {
                     <Link
                       key={post.id}
                       href={`/posts/${post.slug}`}
-                      className="rounded-xl border border-border bg-background/60 px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-soft"
+                      className="rounded-sm border border-border bg-muted/45 px-4 py-3 transition hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div>
@@ -114,7 +116,7 @@ export default async function StatsPage() {
                     </Link>
                   ))
                 ) : (
-                  <p className="rounded-xl border border-border bg-background/60 p-4 text-sm leading-6 text-muted-foreground">
+                  <p className="rounded-sm border border-border bg-muted/45 p-4 text-sm leading-6 text-muted-foreground">
                     Add ratings to posts to see favorites here.
                   </p>
                 )}
@@ -123,7 +125,7 @@ export default async function StatsPage() {
           </section>
         </>
       ) : (
-        <section className="rounded-2xl border border-border bg-card p-8 text-center shadow-soft sm:p-10">
+        <section className="rounded-lg border border-border bg-white/95 p-8 text-center shadow-soft sm:p-10">
           <h2 className="font-serif text-3xl font-bold text-foreground">
             No stats yet
           </h2>
