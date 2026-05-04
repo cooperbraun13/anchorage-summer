@@ -1,0 +1,83 @@
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { formatDate } from "@/lib/format";
+import { getPostBySlug } from "@/lib/posts";
+import { siteConfig } from "@/lib/site-config";
+
+export const dynamic = "force-dynamic";
+
+type PostDetailPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
+export default async function PostDetailPage({ params }: PostDetailPageProps) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-10 sm:px-8">
+      <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+        <div className="relative aspect-[16/9] bg-muted">
+          <Image
+            src={post.imageUrl || siteConfig.assets.defaultPostImage}
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1024px) 960px, 100vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="grid gap-6 p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <span className="rounded-full bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
+              {post.category}
+            </span>
+            <time className="text-sm font-medium text-muted-foreground">
+              {formatDate(post.date)}
+            </time>
+          </div>
+          <div>
+            <h1 className="font-serif text-5xl font-bold leading-tight text-foreground">
+              {post.title}
+            </h1>
+            <div className="mt-4 flex flex-wrap gap-3 text-sm font-medium text-muted-foreground">
+              {post.location ? <span>{post.location}</span> : null}
+              {post.rating ? <span>{post.rating}/10 rating</span> : null}
+              {post.distance ? <span>{post.distance} mi</span> : null}
+              {post.cost !== null ? <span>${post.cost}</span> : null}
+            </div>
+          </div>
+          <div className="max-w-none whitespace-pre-wrap text-lg leading-8 text-foreground/85">
+            {post.body}
+          </div>
+          {post.latitude !== null && post.longitude !== null ? (
+            <div className="rounded-xl border border-border bg-primary-soft/50 p-4 text-sm font-semibold text-primary">
+              Map coordinates: {post.latitude}, {post.longitude}
+            </div>
+          ) : null}
+          <div className="flex flex-wrap justify-between gap-3 border-t border-border pt-5">
+            <Link
+              href="/posts"
+              className="rounded-lg border border-border bg-card px-4 py-3 text-sm font-semibold text-primary transition hover:-translate-y-0.5 hover:shadow-soft"
+            >
+              Back to posts
+            </Link>
+            <Link
+              href={`/posts/${post.slug}/edit`}
+              className="rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-soft"
+            >
+              Edit Post
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
