@@ -85,7 +85,7 @@ export default async function AdminCommentsPage({
             Review guest comments before they appear publicly on post pages.
           </p>
         </div>
-        <span className="rounded-full bg-primary-soft px-4 py-2 text-sm font-bold text-primary">
+        <span className="rounded-sm bg-primary-soft px-4 py-2 text-sm font-bold text-primary">
           {comments.length} pending
         </span>
       </section>

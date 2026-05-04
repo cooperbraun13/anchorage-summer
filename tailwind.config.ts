@@ -19,8 +19,16 @@ const config: Config = {
         muted: "rgb(var(--muted) / <alpha-value>)",
         "muted-foreground": "rgb(var(--muted-foreground) / <alpha-value>)",
       },
+      borderRadius: {
+        sm: "0.125rem",
+        DEFAULT: "0.1875rem",
+        md: "0.25rem",
+        lg: "0.375rem",
+        xl: "0.5rem",
+        "2xl": "0.625rem",
+      },
       boxShadow: {
-        soft: "0 18px 50px rgb(45 68 54 / 0.12)",
+        soft: "0 8px 24px rgb(45 68 54 / 0.08)",
       },
       fontFamily: {
         body: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],

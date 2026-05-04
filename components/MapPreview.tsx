@@ -7,7 +7,7 @@ type MapPreviewProps = {
 
 export function MapPreview({ posts }: MapPreviewProps) {
   return (
-    <section className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+    <section className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-serif text-2xl font-bold text-foreground">
           Places I&apos;ve Been
@@ -20,7 +20,7 @@ export function MapPreview({ posts }: MapPreviewProps) {
         </Link>
       </div>
       <div className="mt-4 overflow-hidden rounded-xl">
-        <MapView posts={posts} className="h-80" compact />
+        <MapView posts={posts} className="h-72 sm:h-80" compact />
       </div>
     </section>
   );

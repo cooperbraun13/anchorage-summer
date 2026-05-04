@@ -21,13 +21,13 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   ]);
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-10 sm:px-8 lg:px-10">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-5 py-9 sm:px-8 lg:px-10">
       <section className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
             Field notes
           </p>
-          <h1 className="font-serif text-5xl font-bold text-foreground">
+          <h1 className="font-serif text-4xl font-bold text-foreground sm:text-5xl">
             Posts
           </h1>
           <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
@@ -42,7 +42,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         </Link>
       </section>
 
-      <form className="grid gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft md:grid-cols-[1fr_180px_160px_auto]">
+      <form className="grid gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft md:grid-cols-[1fr_180px_160px_auto] md:p-5">
         <input
           className="rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-4 focus:ring-primary-soft"
           name="search"
@@ -82,7 +82,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="rounded-2xl border border-border bg-card p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+                className="rounded-2xl border border-border bg-card p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
             >
               <PostCard
                 post={{
@@ -100,7 +100,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           ))}
         </section>
       ) : (
-        <section className="rounded-2xl border border-border bg-card p-10 text-center shadow-soft">
+        <section className="rounded-2xl border border-border bg-card p-8 text-center shadow-soft sm:p-10">
           <h2 className="font-serif text-3xl font-bold text-foreground">
             No posts yet
           </h2>

@@ -21,7 +21,7 @@ export function CommentForm({ action }: CommentFormProps) {
   return (
     <form
       action={formAction}
-      className="grid gap-5 rounded-2xl border border-border bg-card p-6 shadow-soft"
+      className="grid gap-5 rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6"
     >
       <div>
         <h2 className="font-serif text-2xl font-bold text-foreground">

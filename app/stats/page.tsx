@@ -44,12 +44,12 @@ export default async function StatsPage() {
   ];
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-10 sm:px-8 lg:px-10">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-5 py-9 sm:px-8 lg:px-10">
       <section>
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
           Summer dashboard
         </p>
-        <h1 className="font-serif text-5xl font-bold text-foreground">Stats</h1>
+        <h1 className="font-serif text-4xl font-bold text-foreground sm:text-5xl">Stats</h1>
         <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
           A quick rollup of posts, trails, distance, ratings, and categories.
         </p>
@@ -123,7 +123,7 @@ export default async function StatsPage() {
           </section>
         </>
       ) : (
-        <section className="rounded-2xl border border-border bg-card p-10 text-center shadow-soft">
+        <section className="rounded-2xl border border-border bg-card p-8 text-center shadow-soft sm:p-10">
           <h2 className="font-serif text-3xl font-bold text-foreground">
             No stats yet
           </h2>

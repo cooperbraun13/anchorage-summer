@@ -114,10 +114,10 @@ export default async function Home() {
       : fallbackRecentPosts;
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-8 sm:px-8 lg:px-10">
-      <section className="grid items-center gap-8 pt-2 md:grid-cols-[220px_1fr] lg:pt-8">
-        <div className="mx-auto flex size-44 items-center justify-center rounded-full border border-border bg-card p-2 shadow-soft md:mx-0">
-          <div className="relative size-full overflow-hidden rounded-full">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-5 py-7 sm:px-8 lg:gap-8 lg:px-10">
+      <section className="grid items-center gap-7 pt-1 md:grid-cols-[190px_1fr] lg:grid-cols-[220px_1fr] lg:pt-7">
+        <div className="mx-auto flex size-36 items-center justify-center rounded-lg border border-border bg-card p-2 shadow-soft sm:size-44 md:mx-0">
+          <div className="relative size-full overflow-hidden rounded-md">
             <Image
               src={siteConfig.assets.heroBadge}
               alt=""
@@ -129,24 +129,24 @@ export default async function Home() {
           </div>
         </div>
         <div className="max-w-3xl text-center md:text-left">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-primary sm:text-sm">
             Summer field notes
           </p>
-          <h1 className="font-serif text-5xl font-bold leading-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="font-serif text-4xl font-bold leading-tight text-foreground sm:text-6xl lg:text-7xl">
             {siteConfig.hero.title}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-muted-foreground md:mx-0 sm:text-lg">
             {siteConfig.hero.subtitle}
           </p>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_360px]">
+      <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_350px]">
         <FeaturedPost post={featuredPost} />
         <StatsPanel title="Summer at a Glance" stats={homepageStats} />
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_460px]">
+      <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_430px]">
         <RecentPosts posts={homepageRecentPosts} />
         <MapPreview posts={mappedPosts} />
       </section>
@@ -154,7 +154,7 @@ export default async function Home() {
       <div className="flex justify-center pb-8">
         <Link
           href="/posts"
-          className="rounded-full border border-border bg-card px-5 py-3 text-sm font-semibold text-primary shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
+          className="rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold text-primary shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft"
         >
           View all posts
         </Link>

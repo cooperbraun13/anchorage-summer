@@ -6,8 +6,8 @@ type StatCardProps = {
 
 export function StatCard({ label, value, detail }: StatCardProps) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-sm">
-      <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-primary-soft text-lg font-bold text-primary">
+    <div className="flex min-h-24 items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-sm">
+      <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-primary-soft text-base font-bold text-primary">
         {label.slice(0, 1)}
       </div>
       <div>

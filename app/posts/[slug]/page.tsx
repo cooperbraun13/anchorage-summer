@@ -27,7 +27,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const commentAction = createCommentAction.bind(null, post.slug);
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-10 sm:px-8">
+    <main className="mx-auto flex w-full max-w-5xl flex-col gap-7 px-5 py-9 sm:px-8">
       <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
         <div className="relative aspect-[16/9] bg-muted">
           <Image
@@ -39,9 +39,9 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
             className="object-cover"
           />
         </div>
-        <div className="grid gap-6 p-6 sm:p-8">
+        <div className="grid gap-5 p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="rounded-full bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
+            <span className="rounded-sm bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
               {post.category}
             </span>
             <time className="text-sm font-medium text-muted-foreground">
@@ -49,7 +49,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
             </time>
           </div>
           <div>
-            <h1 className="font-serif text-5xl font-bold leading-tight text-foreground">
+            <h1 className="font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
               {post.title}
             </h1>
             <div className="mt-4 flex flex-wrap gap-3 text-sm font-medium text-muted-foreground">
@@ -59,7 +59,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
               {post.cost !== null ? <span>${post.cost}</span> : null}
             </div>
           </div>
-          <div className="max-w-none whitespace-pre-wrap text-lg leading-8 text-foreground/85">
+          <div className="max-w-none whitespace-pre-wrap text-base leading-8 text-foreground/85 sm:text-lg">
             {post.body}
           </div>
           {post.latitude !== null && post.longitude !== null ? (
@@ -84,7 +84,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+      <section className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
         <CommentList comments={post.comments} />
         <CommentForm action={commentAction} />
       </section>

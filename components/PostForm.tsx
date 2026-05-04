@@ -24,7 +24,10 @@ export function PostForm({
   const values = state.values ?? initialValues ?? getEmptyPostValues();
 
   return (
-    <form action={formAction} className="grid gap-6 rounded-2xl border border-border bg-card p-6 shadow-soft">
+    <form
+      action={formAction}
+      className="grid gap-5 rounded-2xl border border-border bg-card p-5 shadow-soft sm:gap-6 sm:p-6"
+    >
       {state.message ? (
         <div className="rounded-xl border border-border bg-primary-soft px-4 py-3 text-sm font-semibold text-primary">
           {state.message}

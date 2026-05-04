@@ -14,7 +14,7 @@ type RecentPostsProps = {
 
 export function RecentPosts({ posts }: RecentPostsProps) {
   return (
-    <section className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+    <section className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-serif text-2xl font-bold text-foreground">
           Recent Posts
@@ -26,7 +26,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
           View all
         </Link>
       </div>
-      <div className="mt-5 grid gap-6 md:grid-cols-3">
+      <div className="mt-5 grid gap-5 md:grid-cols-3">
         {posts.map((post) => (
           <PostCard key={post.title} post={post} />
         ))}

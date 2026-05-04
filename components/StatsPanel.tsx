@@ -11,7 +11,7 @@ type StatsPanelProps = {
 
 export function StatsPanel({ title, stats }: StatsPanelProps) {
   return (
-    <aside className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+    <aside className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
       <h2 className="font-serif text-2xl font-bold text-foreground">{title}</h2>
       <div className="mt-5 grid gap-3">
         {stats.map((stat) => (

@@ -11,7 +11,7 @@ type CommentListProps = {
 
 export function CommentList({ comments }: CommentListProps) {
   return (
-    <section className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+    <section className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-serif text-2xl font-bold text-foreground">
           Comments
@@ -26,7 +26,7 @@ export function CommentList({ comments }: CommentListProps) {
           {comments.map((comment) => (
             <article
               key={comment.id}
-              className="rounded-xl border border-border bg-background/60 p-4"
+            className="rounded-xl border border-border bg-background/60 p-4 shadow-sm"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="font-serif text-xl font-bold text-foreground">
