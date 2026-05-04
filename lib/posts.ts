@@ -38,6 +38,22 @@ export async function getPostBySlug(slug: string) {
   });
 }
 
+export async function getPostWithApprovedComments(slug: string) {
+  return prisma.post.findUnique({
+    where: { slug },
+    include: {
+      comments: {
+        where: {
+          approved: true,
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
+    },
+  });
+}
+
 export async function getPostCategories() {
   const categories = await prisma.post.findMany({
     distinct: ["category"],

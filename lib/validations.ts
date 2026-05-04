@@ -39,6 +39,29 @@ export type ValidPostInput = {
   imageUrl: string | null;
 };
 
+export type CommentFormValues = {
+  name: string;
+  body: string;
+  website: string;
+};
+
+export type CommentValidationErrors = Partial<
+  Record<keyof Pick<CommentFormValues, "name" | "body">, string>
+>;
+
+export type CommentActionState = {
+  message?: string;
+  ok?: boolean;
+  errors?: CommentValidationErrors;
+  values?: CommentFormValues;
+};
+
+export type ValidCommentInput = {
+  name: string;
+  body: string;
+  approved: false;
+};
+
 const emptyPostValues: PostFormValues = {
   title: "",
   slug: "",
@@ -52,6 +75,12 @@ const emptyPostValues: PostFormValues = {
   distance: "",
   body: "",
   imageUrl: "",
+};
+
+const emptyCommentValues: CommentFormValues = {
+  name: "",
+  body: "",
+  website: "",
 };
 
 export function slugify(value: string) {
@@ -175,6 +204,63 @@ export function validatePostFormData(formData: FormData) {
 
 export function getEmptyPostValues() {
   return emptyPostValues;
+}
+
+export function getCommentFormValues(formData: FormData): CommentFormValues {
+  return {
+    name: getString(formData, "name"),
+    body: getString(formData, "body"),
+    website: getString(formData, "website"),
+  };
+}
+
+export function validateCommentFormData(formData: FormData) {
+  const values = getCommentFormValues(formData);
+  const errors: CommentValidationErrors = {};
+  const name = values.name.trim();
+  const body = values.body.trim();
+
+  if (values.website) {
+    return {
+      ok: true as const,
+      spam: true as const,
+      data: null,
+    };
+  }
+
+  if (!name) {
+    errors.name = "Name is required.";
+  } else if (name.length > 50) {
+    errors.name = "Name must be 50 characters or fewer.";
+  }
+
+  if (!body) {
+    errors.body = "Comment is required.";
+  } else if (body.length > 1000) {
+    errors.body = "Comment must be 1000 characters or fewer.";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      ok: false as const,
+      errors,
+      values,
+    };
+  }
+
+  return {
+    ok: true as const,
+    spam: false as const,
+    data: {
+      name,
+      body,
+      approved: false,
+    } satisfies ValidCommentInput,
+  };
+}
+
+export function getEmptyCommentValues() {
+  return emptyCommentValues;
 }
 
 function getString(formData: FormData, key: string) {

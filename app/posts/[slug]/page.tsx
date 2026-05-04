@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { createCommentAction } from "@/app/posts/[slug]/comments/actions";
+import { CommentForm } from "@/components/CommentForm";
+import { CommentList } from "@/components/CommentList";
 import { formatDate } from "@/lib/format";
-import { getPostBySlug } from "@/lib/posts";
+import { getPostWithApprovedComments } from "@/lib/posts";
 import { siteConfig } from "@/lib/site-config";
 
 export const dynamic = "force-dynamic";
@@ -15,11 +18,13 @@ type PostDetailPageProps = {
 
 export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const post = await getPostWithApprovedComments(slug);
 
   if (!post) {
     notFound();
   }
+
+  const commentAction = createCommentAction.bind(null, post.slug);
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-10 sm:px-8">
@@ -77,6 +82,11 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+        <CommentList comments={post.comments} />
+        <CommentForm action={commentAction} />
       </section>
     </main>
   );
