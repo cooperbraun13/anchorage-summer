@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(`https://${siteConfig.domain}`),
+  icons: {
+    icon: siteConfig.assets.favicon,
+    shortcut: siteConfig.assets.favicon,
+  },
 };
 
 export default function RootLayout({

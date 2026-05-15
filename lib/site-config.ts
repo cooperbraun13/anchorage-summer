@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Anchorage Summer",
-  shortName: "Anchorage",
+  name: "anchorage summer",
+  shortName: "anchorage",
   domain: "anchoragesummer.com",
   description:
     "A personal travel blog tracking hikes, trails, food spots, and internship life in Anchorage, Alaska.",
@@ -27,6 +27,7 @@ export const siteConfig = {
     },
   },
   assets: {
+    favicon: "/favicon.svg",
     heroBadge: "/alaska-summer.jpg",
     defaultPostImage: "/alaska-summer.jpg",
     backgroundAccent: "/alaska-summer.jpg",
