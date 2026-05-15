@@ -28,7 +28,7 @@ export const siteConfig = {
   },
   assets: {
     favicon: "/favicon.svg",
-    heroBadge: "/alaska-summer.jpg",
+    heroBadge: "/alaska-badge.webp",
     defaultPostImage: "/alaska-summer.jpg",
     backgroundAccent: "/alaska-summer.jpg",
   },
