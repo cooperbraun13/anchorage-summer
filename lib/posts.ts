@@ -86,9 +86,13 @@ export async function getPostsWithCoordinates() {
       title: true,
       slug: true,
       category: true,
+      date: true,
       location: true,
       latitude: true,
       longitude: true,
+      rating: true,
+      body: true,
+      imageUrl: true,
     },
   });
 }

@@ -16,6 +16,15 @@ export const siteConfig = {
   map: {
     defaultCenter: [61.2176, -149.8997] as [number, number],
     defaultZoom: 10,
+    defaultMarkerColor: "#2563eb",
+    compactMarkerColor: "#104831",
+    categoryColors: {
+      HIKE: "#255c45",
+      TRAIL: "#255c45",
+      FOOD: "#b45309",
+      COFFEE: "#7c2d12",
+      INTERNSHIP: "#6d28d9",
+    },
   },
   assets: {
     heroBadge:
@@ -28,6 +37,7 @@ export const siteConfig = {
   navigation: [
     { label: "Home", href: "/" },
     { label: "Posts", href: "/posts" },
+    { label: "Timeline", href: "/timeline" },
     { label: "Map", href: "/map" },
     { label: "Stats", href: "/stats" },
   ],

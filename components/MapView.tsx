@@ -7,9 +7,13 @@ export type MapPost = {
   title: string;
   slug: string;
   category: string;
+  date: Date;
   location: string | null;
   latitude: number | null;
   longitude: number | null;
+  rating: number | null;
+  body: string;
+  imageUrl: string | null;
 };
 
 export type MapViewProps = {
