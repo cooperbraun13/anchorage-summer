@@ -29,6 +29,7 @@ export const siteConfig = {
   assets: {
     favicon: "/favicon.svg",
     heroBadge: "/alaska-badge.webp",
+    homepageBoxImage: "/anchorage-box-image.webp",
     defaultPostImage: "/alaska-summer.jpg",
     backgroundAccent: "/alaska-summer.jpg",
   },

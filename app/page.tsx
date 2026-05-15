@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FeaturedPost } from "@/components/FeaturedPost";
+import { DashboardPostCard } from "@/components/DashboardPostCard";
+import { DashboardRecentNotes } from "@/components/DashboardRecentNotes";
+import { DashboardStats } from "@/components/DashboardStats";
+import { Fireplace } from "@/components/Fireplace";
 import { MapPreview } from "@/components/MapPreview";
-import { RecentPosts } from "@/components/RecentPosts";
-import { StatsPanel } from "@/components/StatsPanel";
 import { formatDate } from "@/lib/format";
 import { getPosts, getPostsWithCoordinates } from "@/lib/posts";
 import { siteConfig } from "@/lib/site-config";
@@ -17,27 +18,6 @@ export default async function Home() {
     getPosts(),
     getPostsWithCoordinates(),
   ]);
-
-  const featuredPost = recentPosts[0]
-    ? {
-        title: recentPosts[0].title,
-        category: recentPosts[0].category,
-        date: formatDate(recentPosts[0].date),
-        location: recentPosts[0].location ?? "Anchorage, AK",
-        elevation: recentPosts[0].distance
-          ? `${recentPosts[0].distance} mi`
-          : "Field note",
-        excerpt: recentPosts[0].body,
-        rating: recentPosts[0].rating ? `${recentPosts[0].rating}/10` : "New",
-        imageUrl:
-          recentPosts[0].imageUrl ?? siteConfig.assets.defaultPostImage,
-        meta: [
-          recentPosts[0].category,
-          recentPosts[0].cost !== null ? `$${recentPosts[0].cost}` : "Saved",
-          recentPosts[0].latitude !== null ? "Mapped" : "Unmapped",
-        ],
-      }
-    : null;
 
   const homepageStats = [
     {
@@ -57,54 +37,66 @@ export default async function Home() {
     },
   ];
 
-  const homepageRecentPosts = recentPosts.slice(0, 3).map((post) => ({
+  const dashboardPosts = recentPosts.slice(0, 2).map((post) => ({
     title: post.title,
+    slug: post.slug,
     category: post.category,
     date: formatDate(post.date),
     location: post.location,
     excerpt: post.body,
     imageUrl: post.imageUrl,
   }));
+  const dashboardRecentPosts = recentPosts.slice(2, 5).map((post) => ({
+    title: post.title,
+    slug: post.slug,
+    category: post.category,
+    date: formatDate(post.date),
+    location: post.location,
+  }));
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-8 sm:px-8 lg:gap-10 lg:px-10">
-      <section className="grid items-center gap-8 border-b border-border/80 pb-8 pt-3 md:grid-cols-[190px_1fr] lg:grid-cols-[220px_1fr] lg:pb-10 lg:pt-9">
-        <div className="mx-auto flex size-36 items-center justify-center rounded-md border border-primary/15 bg-white/[0.88] p-2 shadow-soft sm:size-44 md:mx-0">
-          <div className="relative size-full overflow-hidden rounded-sm">
+    <main className="mx-auto flex w-full max-w-5xl flex-col gap-5 px-5 py-8 sm:px-8 lg:px-0 lg:py-10">
+      <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <section className="flex min-h-[32rem] flex-col rounded-lg border border-border bg-white/95 p-5 shadow-soft sm:p-6">
+          <p className="text-sm font-semibold text-accent">
+            summer field notes
+          </p>
+          <h1 className="mt-3 font-serif text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+            {siteConfig.hero.title}
+          </h1>
+          <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
+            {siteConfig.hero.subtitle}
+          </p>
+          <div className="relative mt-5 min-h-40 flex-1 overflow-hidden rounded-sm bg-muted">
             <Image
-              src={siteConfig.assets.heroBadge}
+              src={siteConfig.assets.homepageBoxImage}
               alt=""
               fill
               priority
-              sizes="176px"
+              sizes="(min-width: 1024px) 640px, 100vw"
               className="object-cover"
             />
           </div>
-        </div>
-        <div className="max-w-3xl text-center md:text-left">
-          <p className="mb-3 text-sm font-semibold text-accent sm:text-base">
-            Summer field notes
-          </p>
-          <h1 className="font-serif text-5xl font-semibold leading-[1.02] text-foreground sm:text-6xl lg:text-7xl">
-            {siteConfig.hero.title}
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground md:mx-0 sm:text-lg">
-            {siteConfig.hero.subtitle}
-          </p>
+        </section>
+
+        <div className="grid h-full grid-rows-[1fr_auto] gap-4">
+          <Fireplace />
+          <DashboardStats stats={homepageStats} />
         </div>
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_350px]">
-        {featuredPost ? (
-          <FeaturedPost post={featuredPost} />
-        ) : (
-          <section className="rounded-lg border border-border bg-white/95 p-8 shadow-soft sm:p-10">
-            <h2 className="font-serif text-3xl font-semibold text-foreground">
+      <section className="grid gap-4 lg:grid-cols-3">
+        {dashboardPosts.map((post) => (
+          <DashboardPostCard key={post.slug} post={post} />
+        ))}
+        {dashboardPosts.length === 0 ? (
+          <section className="rounded-lg border border-border bg-white/95 p-5 shadow-soft lg:col-span-2">
+            <p className="text-sm font-semibold text-accent">latest notes</p>
+            <h2 className="mt-2 font-serif text-2xl font-semibold text-foreground">
               no posts yet
             </h2>
-            <p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-              add your first field note, and it will become the featured post
-              here.
+            <p className="mt-3 leading-7 text-muted-foreground">
+              add your first field note, and recent posts will show up here.
             </p>
             <Link
               href="/posts/new"
@@ -113,21 +105,20 @@ export default async function Home() {
               add post
             </Link>
           </section>
-        )}
-        <StatsPanel title="Summer at a Glance" stats={homepageStats} />
+        ) : null}
+        <DashboardRecentNotes posts={dashboardRecentPosts} />
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_430px]">
-        <RecentPosts posts={homepageRecentPosts} />
+      <section>
         <MapPreview posts={mappedPosts} />
       </section>
 
-      <div className="flex justify-center pb-8">
+      <div className="flex justify-center pb-8 pt-1">
         <Link
           href="/posts"
           className="rounded-sm border border-primary/20 bg-card px-5 py-3 text-sm font-semibold text-primary transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white"
         >
-          View all posts
+          view all posts
         </Link>
       </div>
     </main>

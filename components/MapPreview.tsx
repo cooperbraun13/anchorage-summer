@@ -20,7 +20,7 @@ export function MapPreview({ posts }: MapPreviewProps) {
         </Link>
       </div>
       <div className="mt-4 overflow-hidden rounded-sm border border-border">
-        <MapView posts={posts} className="h-72 sm:h-80" compact />
+        <MapView posts={posts} className="h-56 sm:h-64" compact />
       </div>
     </section>
   );

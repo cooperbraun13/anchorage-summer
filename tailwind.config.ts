@@ -28,7 +28,7 @@ const config: Config = {
         "2xl": "0.5rem",
       },
       boxShadow: {
-        soft: "0 18px 38px rgb(77 55 31 / 0.14)",
+        soft: "0 18px 42px rgb(45 29 17 / 0.22)",
       },
       fontFamily: {
         body: [
