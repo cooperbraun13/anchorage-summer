@@ -26,11 +26,17 @@ export function RecentPosts({ posts }: RecentPostsProps) {
           View all
         </Link>
       </div>
-      <div className="mt-5 grid gap-6 md:grid-cols-3">
-        {posts.map((post) => (
-          <PostCard key={post.title} post={post} />
-        ))}
-      </div>
+      {posts.length > 0 ? (
+        <div className="mt-5 grid gap-6 md:grid-cols-3">
+          {posts.map((post) => (
+            <PostCard key={post.title} post={post} />
+          ))}
+        </div>
+      ) : (
+        <p className="mt-5 rounded-sm border border-border bg-muted/45 p-4 text-sm leading-6 text-muted-foreground">
+          no recent posts yet.
+        </p>
+      )}
     </section>
   );
 }

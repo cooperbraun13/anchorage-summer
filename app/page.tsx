@@ -11,50 +11,6 @@ import { formatStatNumber, getStats } from "@/lib/stats";
 
 export const dynamic = "force-dynamic";
 
-const fallbackFeaturedPost = {
-  title: "Flattop Mountain Trail",
-  category: "Hike",
-  date: "June 15, 2024",
-  location: "Chugach State Park, AK",
-  elevation: "3,510 ft",
-  excerpt:
-    "Incredible views of Anchorage, the inlet, and surrounding peaks. A tough climb, but the panorama from the top is worth it.",
-  rating: "4.5",
-  imageUrl:
-    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80",
-  meta: ["Moderate", "4.3 mi", "2.5-3 hrs"],
-};
-
-const fallbackRecentPosts = [
-  {
-    title: "Moose's Tooth Pizza",
-    category: "Food",
-    date: "June 12, 2024",
-    location: "Anchorage, AK",
-    excerpt: "The holy grail. Worth every bite and every minute of the wait.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Tony Knowles Coastal Trail",
-    category: "Hike",
-    date: "June 8, 2024",
-    location: "Anchorage, AK",
-    excerpt: "Perfect long walk or bike ride with epic views of the inlet.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Byron Glacier Overlook",
-    category: "Hike",
-    date: "May 28, 2024",
-    location: "Chugach State Park",
-    excerpt: "Short hike, big payoff. Wildflowers are popping this time of year.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80",
-  },
-];
-
 export default async function Home() {
   const [stats, recentPosts, mappedPosts] = await Promise.all([
     getStats(),
@@ -81,7 +37,7 @@ export default async function Home() {
           recentPosts[0].latitude !== null ? "Mapped" : "Unmapped",
         ],
       }
-    : fallbackFeaturedPost;
+    : null;
 
   const homepageStats = [
     {
@@ -101,17 +57,14 @@ export default async function Home() {
     },
   ];
 
-  const homepageRecentPosts =
-    recentPosts.length > 0
-      ? recentPosts.slice(0, 3).map((post) => ({
-          title: post.title,
-          category: post.category,
-          date: formatDate(post.date),
-          location: post.location,
-          excerpt: post.body,
-          imageUrl: post.imageUrl,
-        }))
-      : fallbackRecentPosts;
+  const homepageRecentPosts = recentPosts.slice(0, 3).map((post) => ({
+    title: post.title,
+    category: post.category,
+    date: formatDate(post.date),
+    location: post.location,
+    excerpt: post.body,
+    imageUrl: post.imageUrl,
+  }));
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-8 sm:px-8 lg:gap-10 lg:px-10">
@@ -142,7 +95,25 @@ export default async function Home() {
       </section>
 
       <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_350px]">
-        <FeaturedPost post={featuredPost} />
+        {featuredPost ? (
+          <FeaturedPost post={featuredPost} />
+        ) : (
+          <section className="rounded-lg border border-border bg-white/95 p-8 shadow-soft sm:p-10">
+            <h2 className="font-serif text-3xl font-semibold text-foreground">
+              no posts yet
+            </h2>
+            <p className="mt-3 max-w-xl leading-7 text-muted-foreground">
+              add your first field note, and it will become the featured post
+              here.
+            </p>
+            <Link
+              href="/posts/new"
+              className="mt-5 inline-flex rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
+            >
+              add post
+            </Link>
+          </section>
+        )}
         <StatsPanel title="Summer at a Glance" stats={homepageStats} />
       </section>
 

@@ -27,12 +27,9 @@ export const siteConfig = {
     },
   },
   assets: {
-    heroBadge:
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=720&q=80",
-    defaultPostImage:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    backgroundAccent:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+    heroBadge: "/alaska-summer.jpg",
+    defaultPostImage: "/alaska-summer.jpg",
+    backgroundAccent: "/alaska-summer.jpg",
   },
   navigation: [
     { label: "Home", href: "/" },
