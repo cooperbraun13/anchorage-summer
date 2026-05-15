@@ -50,7 +50,7 @@ export function MapView({
         className={`flex ${className} items-center justify-center rounded-sm border border-border bg-primary-soft/50 p-8 text-center`}
       >
         <div>
-          <h3 className="font-serif text-2xl font-bold text-foreground">
+          <h3 className="font-serif text-2xl font-semibold text-foreground">
             No mapped posts yet
           </h3>
           <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">

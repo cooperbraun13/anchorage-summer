@@ -16,7 +16,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
   return (
     <section className="rounded-lg border border-border bg-white/95 p-5 shadow-soft sm:p-6">
       <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
-        <h2 className="font-serif text-2xl font-bold text-foreground">
+        <h2 className="font-serif text-2xl font-semibold text-foreground">
           Recent Posts
         </h2>
         <Link

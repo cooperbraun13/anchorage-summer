@@ -24,10 +24,10 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 py-9 sm:px-8 lg:px-10">
       <section className="flex flex-col justify-between gap-5 border-b border-border/80 pb-7 md:flex-row md:items-end">
         <div>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+          <p className="mb-3 text-sm font-semibold text-accent">
             Field notes
           </p>
-          <h1 className="font-serif text-4xl font-bold text-foreground sm:text-5xl">
+          <h1 className="font-serif text-4xl font-semibold text-foreground sm:text-5xl">
             Posts
           </h1>
           <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
@@ -101,7 +101,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         </section>
       ) : (
         <section className="rounded-lg border border-border bg-white/95 p-8 text-center shadow-soft sm:p-10">
-          <h2 className="font-serif text-3xl font-bold text-foreground">
+          <h2 className="font-serif text-3xl font-semibold text-foreground">
             No posts yet
           </h2>
           <p className="mx-auto mt-3 max-w-xl leading-7 text-muted-foreground">

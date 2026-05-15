@@ -30,7 +30,7 @@ export function Timeline({ groups }: TimelineProps) {
       {groups.map((group) => (
         <section key={group.label} className="grid gap-5 md:grid-cols-[9rem_1fr]">
           <div>
-            <h2 className="sticky top-24 font-serif text-2xl font-bold text-primary">
+            <h2 className="sticky top-24 font-serif text-2xl font-semibold text-primary">
               {group.label}
             </h2>
           </div>
@@ -58,7 +58,7 @@ export function Timeline({ groups }: TimelineProps) {
 
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-sm border border-primary/10 bg-primary-soft px-2.5 py-1 text-[0.68rem] font-bold uppercase text-primary">
+                      <span className="rounded-sm border border-primary/10 bg-primary-soft px-2.5 py-1 text-[0.68rem] font-semibold text-primary">
                         {post.category}
                       </span>
                       <time
@@ -74,7 +74,7 @@ export function Timeline({ groups }: TimelineProps) {
                       ) : null}
                     </div>
 
-                    <h3 className="mt-2 font-serif text-2xl font-bold leading-tight text-foreground">
+                    <h3 className="mt-2 font-serif text-2xl font-semibold leading-tight text-foreground">
                       {post.title}
                     </h3>
                     {post.location ? (

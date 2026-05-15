@@ -41,7 +41,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         </div>
         <div className="grid gap-5 p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="rounded-sm border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
+            <span className="rounded-sm border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
               {post.category}
             </span>
             <time className="text-sm font-medium text-muted-foreground">
@@ -49,7 +49,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
             </time>
           </div>
           <div>
-            <h1 className="font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+            <h1 className="font-serif text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
               {post.title}
             </h1>
             <div className="mt-4 flex flex-wrap gap-3 text-sm font-medium text-muted-foreground">

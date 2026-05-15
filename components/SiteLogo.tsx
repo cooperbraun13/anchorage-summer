@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 export function SiteLogo() {
   return (
     <span className="flex items-center gap-3 text-primary">
-      <span className="flex size-12 shrink-0 items-center justify-center rounded-sm border border-primary/15 bg-primary-soft">
+      <span className="flex size-12 shrink-0 items-center justify-center rounded-sm border border-primary/15 bg-primary-soft/85 shadow-sm">
         <svg
           aria-hidden="true"
           className="size-9"
@@ -36,7 +36,7 @@ export function SiteLogo() {
           />
         </svg>
       </span>
-      <span className="font-serif text-2xl font-bold italic leading-none sm:text-[1.7rem]">
+      <span className="font-serif text-2xl font-semibold leading-none sm:text-[1.7rem]">
         {siteConfig.name}
       </span>
     </span>

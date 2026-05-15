@@ -24,7 +24,7 @@ export function CommentForm({ action }: CommentFormProps) {
       className="grid gap-5 rounded-lg border border-border bg-white/95 p-5 shadow-soft sm:p-6"
     >
       <div>
-        <h2 className="font-serif text-2xl font-bold text-foreground">
+        <h2 className="font-serif text-2xl font-semibold text-foreground">
           Leave a Comment
         </h2>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">

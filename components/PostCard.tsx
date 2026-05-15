@@ -29,7 +29,7 @@ export function PostCard({ post }: PostCardProps) {
       </div>
       <div className="mt-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-sm border border-primary/10 bg-primary-soft px-2.5 py-1 text-[0.68rem] font-bold uppercase text-primary">
+          <span className="rounded-sm border border-primary/10 bg-primary-soft px-2.5 py-1 text-[0.68rem] font-semibold text-primary">
             {post.category}
           </span>
           {post.rating ? (
@@ -38,7 +38,7 @@ export function PostCard({ post }: PostCardProps) {
             </span>
           ) : null}
         </div>
-        <h3 className="mt-2 font-serif text-xl font-bold leading-tight text-foreground">
+        <h3 className="mt-2 font-serif text-xl font-semibold leading-tight text-foreground">
           {post.title}
         </h3>
         <p className="mt-1 text-sm text-muted-foreground">

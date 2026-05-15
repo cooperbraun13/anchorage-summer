@@ -129,10 +129,10 @@ export default async function Home() {
           </div>
         </div>
         <div className="max-w-3xl text-center md:text-left">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-primary sm:text-sm">
+          <p className="mb-3 text-sm font-semibold text-accent sm:text-base">
             Summer field notes
           </p>
-          <h1 className="font-serif text-5xl font-bold leading-[0.98] text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="font-serif text-5xl font-semibold leading-[1.02] text-foreground sm:text-6xl lg:text-7xl">
             {siteConfig.hero.title}
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground md:mx-0 sm:text-lg">
@@ -154,7 +154,7 @@ export default async function Home() {
       <div className="flex justify-center pb-8">
         <Link
           href="/posts"
-          className="rounded-sm border border-primary/20 bg-white px-5 py-3 text-sm font-semibold text-primary transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white"
+          className="rounded-sm border border-primary/20 bg-card px-5 py-3 text-sm font-semibold text-primary transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white"
         >
           View all posts
         </Link>

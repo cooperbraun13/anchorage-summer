@@ -86,7 +86,7 @@ export function LeafletMap({ posts, className, compact }: LeafletMapProps) {
                   <div className="mt-3">
                     <div className="flex flex-wrap items-center gap-2">
                       <span
-                        className="rounded-sm border px-2 py-1 text-[0.65rem] font-bold uppercase"
+                        className="rounded-sm border px-2 py-1 text-[0.65rem] font-semibold"
                         style={{
                           borderColor: `${markerColor}33`,
                           background: `${markerColor}18`,
@@ -104,7 +104,7 @@ export function LeafletMap({ posts, className, compact }: LeafletMapProps) {
                         </span>
                       ) : null}
                     </div>
-                    <h3 className="mt-2 font-serif text-xl font-bold leading-tight text-foreground">
+                    <h3 className="mt-2 font-serif text-xl font-semibold leading-tight text-foreground">
                       {post.title}
                     </h3>
                     {post.location ? (

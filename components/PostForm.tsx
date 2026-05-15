@@ -245,7 +245,7 @@ function ImageUploadField({ error }: { error?: string }) {
       <div className="flex min-h-11 items-center gap-3 rounded-sm border border-border bg-white px-3 py-2">
         <label
           htmlFor={inputId}
-          className="shrink-0 cursor-pointer rounded-sm bg-primary px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white transition hover:bg-primary/90"
+          className="shrink-0 cursor-pointer rounded-sm bg-primary px-3 py-2 text-xs font-semibold text-white transition hover:bg-primary/90"
         >
           Choose
         </label>

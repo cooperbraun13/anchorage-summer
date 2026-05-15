@@ -28,13 +28,13 @@ export function FeaturedPost({ post }: FeaturedPostProps) {
       </div>
       <div className="flex flex-col justify-center gap-4 p-6 sm:p-7">
         <div className="flex items-center justify-between gap-4">
-          <span className="rounded-sm border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-bold uppercase text-primary">
+          <span className="rounded-sm border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
             {post.category}
           </span>
           <time className="text-sm text-muted-foreground">{post.date}</time>
         </div>
         <div>
-          <h2 className="font-serif text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+          <h2 className="font-serif text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
             {post.title}
           </h2>
           <p className="mt-3 text-sm font-medium text-muted-foreground">

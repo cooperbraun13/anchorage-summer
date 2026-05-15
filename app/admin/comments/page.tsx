@@ -28,10 +28,10 @@ export default async function AdminCommentsPage({
     return (
       <main className="mx-auto flex w-full max-w-xl flex-col gap-6 px-5 py-16 sm:px-8">
         <section className="border-b border-border/80 pb-6">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+          <p className="mb-3 text-sm font-semibold text-accent">
             Admin
           </p>
-          <h1 className="font-serif text-5xl font-bold text-foreground">
+          <h1 className="font-serif text-5xl font-semibold text-foreground">
             Comment Moderation
           </h1>
           <p className="mt-3 leading-7 text-muted-foreground">
@@ -75,17 +75,17 @@ export default async function AdminCommentsPage({
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-10 sm:px-8">
       <section className="flex flex-col justify-between gap-4 border-b border-border/80 pb-7 md:flex-row md:items-end">
         <div>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+          <p className="mb-3 text-sm font-semibold text-accent">
             Admin
           </p>
-          <h1 className="font-serif text-5xl font-bold text-foreground">
+          <h1 className="font-serif text-5xl font-semibold text-foreground">
             Comment Moderation
           </h1>
           <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
             Review guest comments before they appear publicly on post pages.
           </p>
         </div>
-        <span className="rounded-sm border border-primary/10 bg-primary-soft px-4 py-2 text-sm font-bold text-primary">
+        <span className="rounded-sm border border-primary/10 bg-primary-soft px-4 py-2 text-sm font-semibold text-primary">
           {comments.length} pending
         </span>
       </section>
@@ -101,7 +101,7 @@ export default async function AdminCommentsPage({
                 <div>
                   <Link
                     href={`/posts/${comment.post.slug}`}
-                    className="font-serif text-2xl font-bold text-foreground transition hover:text-primary"
+                    className="font-serif text-2xl font-semibold text-foreground transition hover:text-primary"
                   >
                     {comment.post.title}
                   </Link>
@@ -136,7 +136,7 @@ export default async function AdminCommentsPage({
         </section>
       ) : (
         <section className="rounded-lg border border-border bg-white/95 p-10 text-center shadow-soft">
-          <h2 className="font-serif text-3xl font-bold text-foreground">
+          <h2 className="font-serif text-3xl font-semibold text-foreground">
             No pending comments
           </h2>
           <p className="mx-auto mt-3 max-w-xl leading-7 text-muted-foreground">

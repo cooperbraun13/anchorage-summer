@@ -21,7 +21,7 @@ export function StatCard({ label, value, detail, framed }: StatCardProps) {
       </div>
       <div>
         <div className="flex items-baseline gap-3">
-          <p className="font-serif text-3xl font-bold leading-none text-foreground">
+          <p className="font-serif text-3xl font-semibold leading-none text-foreground">
             {value}
           </p>
           <p className="text-sm font-semibold text-muted-foreground">{label}</p>
