@@ -67,14 +67,15 @@ export default async function Home() {
           <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
             {siteConfig.hero.subtitle}
           </p>
-          <div className="relative mt-5 min-h-40 flex-1 overflow-hidden rounded-sm bg-muted">
+          <div className="relative mt-5 min-h-64 flex-1 overflow-hidden rounded-sm bg-muted">
             <Image
               src={siteConfig.assets.homepageBoxImage}
               alt=""
               fill
               priority
+              quality={100}
               sizes="(min-width: 1024px) 640px, 100vw"
-              className="object-cover"
+              className="object-cover object-center"
             />
           </div>
         </section>
